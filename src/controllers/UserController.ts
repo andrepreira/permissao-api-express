@@ -27,10 +27,10 @@ class UserController {
         await userRepository.save(user)
 
         /** 
-         * Deu erro na primeira vez ao deletar, pois password não é opcional!! Estou ignorando?
-         * Veja aqui: https://pt.stackoverflow.com/questions/479147/the-operand-of-a-delete-operator-must-be-optional
+         * Não consigo deletar o rashed password no jsonr resposta. Possivel solução usando @Injectable() e @exclude
+         * Veja aqui: https://pt.coredump.biz/questions/50360101/how-to-exclude-entity-field-from-returned-by-controller-json-nestjs-typeorm
         **/
-        delete user.password
+       // delete user.password
 
         return response.status(201).json(user)
 

@@ -14,7 +14,7 @@ class User {
     username: string
 
     @Column()
-    password?: string
+    password: string
 
     @CreateDateColumn()
     created_at: Date
