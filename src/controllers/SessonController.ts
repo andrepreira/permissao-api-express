@@ -1,7 +1,8 @@
-import { compare } from 'bcryptjs';
+import { compare } from 'bcryptjs'
 import {Request, Response } from 'express'
-import { getCustomRepository } from 'typeorm';
-import UserRepository from '../repositories/UserRepository';
+import { getCustomRepository } from 'typeorm'
+import UserRepository from '../repositories/UserRepository'
+import{ sign } from 'jsonwebtoken'
 
 class SessionController {
 
@@ -20,6 +21,21 @@ class SessionController {
         //usando compare() do bcrypts
 
         const matchPassword = await compare(password, user.password)
+
+        if(!matchPassword){
+            return response.status(400).json({ error: 'User or password does not exist' })
+        }
+
+        //user.id precisa ser uma string
+        const token = sign({},'e638183a887050bd1c5d7621e2a8dfb4', {
+            subject: user.id,
+            expiresIn: '1d'
+        })
+
+        return response.json({
+            token,
+            user,
+        })
         
 
     }
