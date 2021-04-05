@@ -2,13 +2,15 @@ import { Request, Response } from 'express'
 import { getCustomRepository } from 'typeorm'
 import { hash } from 'bcryptjs'
 import UserRepository from '../repositories/UserRepository'
+import RolerRepository from '../repositories/RoleRepository'
 
 class UserController {
 
     async create(request: Request, response: Response) {
         const userRepository = getCustomRepository(UserRepository)
+        const roleRepository = getCustomRepository(RolerRepository)
 
-        const { name, username, password } = request.body
+        const { name, username, password, roles } = request.body
 
         const existUser = await userRepository.findOne( {username} )
 
@@ -18,10 +20,13 @@ class UserController {
 
         const passwordHashed = await hash(password, 8)
 
+        const existRoles = await roleRepository.findByIds(roles)
+
         const user = userRepository.create({
             name,
             username,
-            password: passwordHashed
+            password: passwordHashed,
+            roles: existRoles
         })
 
         await userRepository.save(user)

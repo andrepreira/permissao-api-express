@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn, Entity, CreateDateColumn } from 'typeorm'
+import { Column, PrimaryGeneratedColumn, Entity, CreateDateColumn, ManyToMany, JoinTable} from 'typeorm'
+import Role from '../models/Role'
 
 @Entity('users')
 
@@ -18,6 +19,14 @@ class User {
 
     @CreateDateColumn()
     created_at: Date
+
+    @ManyToMany(() => Role)
+    @JoinTable({
+        name: "users_roles",
+        joinColumns: [{ name: 'user_id' }],
+        inverseJoinColumns: [{ name: 'role_id' }]
+    })
+    roles: Role[]
 
 }
 
