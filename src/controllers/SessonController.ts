@@ -11,7 +11,10 @@ class SessionController {
 
         const userRepository = getCustomRepository(UserRepository);
 
-        const user = await userRepository.findOne({username})
+        const user = await userRepository.findOne(
+            {username},
+            {relations: ["roles"]}
+            )
 
         if(!user){
             return response.status(400).json({ error: 'User not found!' })
@@ -26,8 +29,10 @@ class SessionController {
             return response.status(400).json({ error: 'User or password does not exist' })
         }
 
+        const roles = user.roles.map( role => role.name )
+
         //user.id precisa ser uma string
-        const token = sign({},'e638183a887050bd1c5d7621e2a8dfb4', {
+        const token = sign({roles},'e638183a887050bd1c5d7621e2a8dfb4', {
             subject: user.id,
             expiresIn: '1d'
         })
