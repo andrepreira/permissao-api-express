@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { getCustomRepository, getRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 import { hash } from 'bcryptjs'
-import UserRepository from '../repositories/UserRepository';
+import UserRepository from '../repositories/UserRepository'
 
 class UserController {
 
@@ -10,9 +10,9 @@ class UserController {
 
         const { name, username, password } = request.body
 
-        const exisUser = await userRepository.findOne( {username} )
+        const existUser = await userRepository.findOne( {username} )
 
-        if(exisUser) {
+        if(existUser) {
             return response.status(400).json({ mensagem: 'User already exists!'})
         }
 
