@@ -1,6 +1,5 @@
 
-
-## Como rodar o projeto
+## 🗂 Como rodar o projeto
 
 docker-compose -f "src\database\docker-compose.yml" up -d --build 
 
@@ -18,21 +17,45 @@ docker ps -a
 
 docker start CONTAINER_ID
 
+---
 
-## Funcionalidades da API
+## 🚀 Tecnologias utilizadas
 
-[] Cadastro de users
+O projeto foi desenvolvido utilizando as seguintes tecnologias
 
-[] Autenticação dos users
+- [Express](https://expressjs.com/pt-br/)
+- [Docker](https://www.docker.com/)
+- [TypeORM](https://typeorm.io/#/)
+- [PostgresSQL](https://www.postgresql.org/)
 
-[] Cadastro de permissões
+---
 
-[] Cadastro de Roles
+## 🗂 Material de apoio
 
-[] Cadastro de Produtos
+- [TypeORM](typeorm.io/)
+- [JWT](https://jwt.io)
+- [BCrypt](https://www.npmjs.com/package/bcrypt)
+- [JsonWebToken](www.npmjs.com/package/jsonwebtoken)
+- [Tutorial Youtube](https://www.youtube.com/watch?v=TGCwB9oMR0o)
 
-[] Conexão User_Roles
 
-[] Permisson_Roles
+## ☑️ Funcionalidades da API
 
+[ ] Cadastro de users
+
+[ ] Autenticação dos users
+
+[ ] Cadastro de permissões
+
+[ ] Cadastro de Roles
+
+[ ] Cadastro de Produtos
+
+[ ] Conexão User_Roles
+
+[ ] Permisson_Roles
+
+---
+
+<h3 align="center">Desenvolvido por André Pereira </h3>
 

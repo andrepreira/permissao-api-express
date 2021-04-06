@@ -15,7 +15,17 @@ router.post('/permissions', PermissionController.create)
 router.post('/roles', RoleController.create)
 
 router.post('/products', whois(['ROLE_ADMIN']), ProductController.create)
-router.get('/products', whois(['ROLE_ADMIN']), whois(['ROLE_USER']), ProductController.index)
-router.get('/products/:id', whois(['ROLE_ADMIN']), whois(['ROLE_ADMIN']), ProductController.show)
+router.get(
+    '/products', 
+    whois(['ROLE_ADMIN']), 
+    whois(['ROLE_USER']), 
+    ProductController.index
+    )
+router.get(
+    '/products/:id', 
+    whois(['ROLE_ADMIN']), 
+    whois(['ROLE_USER']), 
+    ProductController.show
+    )
 
 export default router
